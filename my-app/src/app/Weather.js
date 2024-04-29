@@ -1,5 +1,6 @@
 'use client'
 
+import styles from './Weather.module.css';
 import { useEffect, useState } from 'react';
 
 export default function Weather() {
@@ -7,6 +8,9 @@ export default function Weather() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    
+    fetchWeather();
+
     async function fetchWeather() {
       const city = 'Charleston';
       const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY; 
@@ -24,7 +28,6 @@ export default function Weather() {
       }
     }
 
-    fetchWeather();
   }, []);
 
   if (error) {
@@ -36,10 +39,10 @@ export default function Weather() {
   }
 
   return (
-    <div>
-      <h2>Weather for {weatherData.name}</h2>
-      <p>Current temperature: {weatherData.main.temp}°F</p>
-      <p>Weather conditions: {weatherData.weather[0].description}</p>
+    <div className={styles.weatherContainer}>
+      <h2 className={styles.title}>Weather for {weatherData.name}</h2>
+      <p className={styles.temperature}>Current temperature: {weatherData.main.temp}°F</p>
+      <p className={styles.description}>Weather conditions: {weatherData.weather[0].description}</p>
     </div>
   );
 }

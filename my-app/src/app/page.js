@@ -1,10 +1,10 @@
 import Weather from "./Weather.js";
+import styles from './Home.module.css';
 
 export default function Home() {
   return (
-    <main>
+    <main className={styles.mainContainer}>
       <div>
-        <h1>Weather App</h1>
         <Weather/>
       </div>
     </main>
