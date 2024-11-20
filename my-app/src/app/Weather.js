@@ -1,5 +1,4 @@
 'use client'
-
 import styles from './Weather.module.css';
 import { useEffect, useState } from 'react';
 
@@ -8,14 +7,14 @@ export default function Weather() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    
     fetchWeather();
-
+    
     async function fetchWeather() {
-      const city = 'Charleston';
-      const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY; 
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},SC,US&appid=${apiKey}&units=imperial`;
-
+      const lat = '32.78';
+      const lon = '-79.93';
+      const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
+      
       try {
         const res = await fetch(url);
         const data = await res.json();
@@ -27,7 +26,6 @@ export default function Weather() {
         setError(err.message);
       }
     }
-
   }, []);
 
   if (error) {
